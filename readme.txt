@@ -1,3 +1,5 @@
-Use this in terminal of VSC:
+Run this from the repository root with MinGW installed:
 
-gcc "D:\checkers\main.c" -o "D:\checkers\main.exe" -I"D:\checkers\SDL\include" -L"D:\checkers\SDL\lib" -lmingw32 -lSDL2main -lSDL2 -mwindows
+gcc main.c -o main.exe -ISDL/include -LSDL/lib -lmingw32 -lSDL2main -lSDL2 -mwindows
+
+The executable is generated locally. Keep SDL2.dll beside it when running.
