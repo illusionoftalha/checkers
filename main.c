@@ -154,6 +154,7 @@ int main(int argc,char **argv){
 
     int running=1;
     while(running){
+        Uint32 frameStart = SDL_GetTicks();
         int winW,winH;
         SDL_GetWindowSize(window,&winW,&winH);
 
@@ -208,6 +209,10 @@ int main(int argc,char **argv){
         if(state==HOME) drawHome(renderer,winW,winH);
         else if(state==PLAYING) drawBoard(renderer,winW,winH);
         else if(state==PAUSED) drawPaused(renderer,winW,winH);
+
+        // This turn-based game has no need to redraw faster than about 60 FPS.
+        Uint32 elapsed = SDL_GetTicks() - frameStart;
+        if(elapsed < 16) SDL_Delay(16 - elapsed);
     }
 
     SDL_DestroyRenderer(renderer);
